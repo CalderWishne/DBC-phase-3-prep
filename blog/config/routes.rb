@@ -1,7 +1,39 @@
 Blog::Application.routes.draw do
-  resources :posts do
-    resources :comments
-  end
+
+  # posts routes:
+  get '/posts', to: 'posts#index', as: 'posts'
+  post '/posts', to: 'posts#create', as: ''
+  get '/posts/new', to: 'posts#new', as: 'new_post'
+  get '/posts/:id/edit', to: 'posts#edit', as: 'edit_post'
+  get '/posts/:id', to: 'posts#show', as: 'post'
+  patch '/posts/:id', to: 'posts#update'
+  put '/posts:id', to: 'posts#update'
+  delete '/posts/:id', to: 'posts#destroy'
+
+  # posts_comments nested routes:
+  get '/posts/:post_id/comments', to: 'comments#index', as: 'post_comments'
+  post '/posts/:post_id/comments', to: 'comments#create'
+  get '/posts/:post_id/comments/new', to: 'comments#new', as: 'new_post_comment'
+  get '/posts/:post_id/comments/:id/edit', to: 'comments#edit', as: 'edit_post_comment'
+  get '/posts/:post_id/comments/:id', to: 'comments#show', as: 'post_comment'
+  patch '/posts/:post_id/comments/:id', to: 'comments#update'
+  put '/posts/:post_id/comments/:id', to: 'comments#update'
+  delete '/posts/:post_id/comments/:id', to: 'comments#destroy'
+
+
+
+
+
+
+
+
+
+
+
+
+  # resources :posts do
+  #   resources :comments
+  # end
 
   root 'welcome#index'
   # The priority is based upon order of creation: first created -> highest priority.
